@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Combo prectice</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            align-items:center;
+            justify-content: center;
+            padding: 100px;
+            color: white;
+            background-color: black;
+        }
+        .container{
+            width: 600px;
+            height: 500px;
+            /* border: 2px solid red; */
+        }
+        .container p{
+            font-size: 25px;
+            color: red;
+        }
+        .start{
+            padding: 10px 30px;
+            color: red;
+            border: none;
+            box-shadow: 0px 0px 3px 3px red;
+            font-size: 19px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+        .start:hover{
+            background-color: red;
+            color: white;
+        }
+        .numb{
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="disc">Guess Combo</p>
+        <div class="display" style="margin-bottom: 50px;"></div>
+        <button class="start">Start</button>
+        <div ><small>Instructions: Guess the combo, blue means higher red means lower.  Try to solve it in as little guesses as possible.</small></div>
+    </div>
+        <script>
+            var disc=document.querySelector('.disc')
+            var display=document.querySelector(".display")
+            var btn=document.querySelector(".start")
+            var playing=false
+            var score=0
+            btn.addEventListener("click",function(){
+                console.log('hel');
+                if(playing==false){
+                    btn.innerHTML="Guess the combo"
+                    playing=true
+                    disc.innerHTML="Guess the combo"
+                    display.innerHTML=''
+                    maker(6)
+                }
+                else{
+                    score++
+                    disc.innerHTML=`Your Guess is:${score}`
+                    console.log('else');
+                    var numbers=document.querySelectorAll(".numb")
+                    for(var i=0;i<numbers.length;i++){
+                        if(numbers[i].value==numbers[i].correct){
+                            numbers[i].style.backgroundColor="green"
+                            numbers[i].style.color="white"
+                        }
+                        else{
+                            let color=(numbers[i].value>numbers[i].correct)?"red":"blue"
+                            numbers[i].style.backgroundColor=color
+                            numbers[i].style.color="white"
+                        }
+                    }
+                    z
+                }
+            })
+            function maker(m){
+                for(var i=0;i<m;i++){
+                    var div=document.createElement("input")
+                    div.classList.add('numb')
+                    div.setAttribute("type","number")
+                    display.append(div)
+                    div.style.width="50px"
+                    div.max=9
+                    div.min=0
+                    div.value=0
+                    div.correct=Math.floor(Math.random()*10)
+                    div.order=i
+                    console.log(div.order,"order",div.correct,"correct");
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+</body>
+</html>
